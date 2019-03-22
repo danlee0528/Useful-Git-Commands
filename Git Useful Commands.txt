@@ -1,0 +1,107 @@
+/*  Basics   */
+git --version
+git help <help>
+git clone <url> <where to clone>
+git init
+git status // shows the status of the local repo
+touch .gitignore // create a .gitignore file
+
+/*  set config  */
+git config --global user.name "abc"
+git config --global user.email "abc@gmail.com"
+git config --list // shows the list of configs on the local machine
+
+/*  Add files to staging area   */
+git add <filename>
+git add -A // stage all changes
+git add -u // stage all changes except untracked files
+git add . // stage all chnages in the current directory
+git status
+
+/*  Remove files from staging area  */
+git reset <file name>
+
+/*  Commit  */
+git commit -m "message"
+git log // shows history of your commit
+
+/*  View information about the remote repo */
+git remote -v
+git branch -a // shows all branches
+
+/*  Push changes */
+git diff
+git status
+git add -Add
+git commit -m "message"
+git pull origin master // git pull <name of the remote repo> <branch we want to push>
+git push origin master 
+
+/*  Create a branch for desired features    */
+git branch <branch_name>
+git checkout <branch_name>
+git push -u origin <branch_name> // enable to use git push, git pull to the remote repo automatically
+git branch -a
+
+/*  Merge a branch to master  */
+git checkout master
+git pull origin master // get the lastest version of origin 
+git bracnh --merged // show merged branches
+git merge <branch_name>
+got push origin master
+
+/*  Delete a branch */
+git branch -d <branch_name> // locally remove
+git branch -a
+git push origin --delete <branch_name> // remove from the remote repo
+
+/*  change the mesage of the lastest commit */
+git commit --amend -m "new message" // will change the history when people pull from the older version
+git log
+git log --stat
+
+/*  When you need to undo some comits swhen other people already pulled changes */
+git revert <hash #> // build a new commit on the top of the past commits
+git log
+git diff <hash #> <revereted_hash #>
+
+/*  Move a commit from a branch to other branch */
+git log
+// get a hash # of the commit you want to Move
+git branch
+git checkout destination_branch
+git cherry-pick <hash#>
+git log
+git checkout source_branch
+git reset --soft <hash#> // keep changes in the staging area and directories
+git reset <hash#> // keep changes in the working directory
+git reset --hard <hash#> // make all tracked files match the state they were in and rid of changes (untracked files are left)
+git clean -df // get rid of untracked files and directories
+
+/*  To undo the change  */
+git reflog
+git <hash # of the removed file>
+git checkout <hash #>
+git log
+git branch <branch_name> // example, backup
+git log
+
+/*  Using the stash command */
+// When having a change not ready to commit and want to revert back to where you started temporarily
+git branch <branch_name>
+git checkout <branch_name>
+// make some changes
+git stash save "message"
+git diff
+git status // expectation: OK, everything up to date
+git stash list
+git statsh apply <stash #> // apply the change and keep it
+git statsh pop // apply the change and drop it, works the same as stack pop
+git statsh list
+git statsh clear
+
+/*  git rebase  */
+git checkout <branch_name>
+git rebase master
+git checkout master
+git merge <branch_name>
