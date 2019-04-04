@@ -5,6 +5,7 @@ git clone <url> <where to clone>
 git init
 git status // shows the status of the local repo
 touch .gitignore // create a .gitignore file
+git rm "file name"
 
 /*  set config  */
 git config --global user.name "abc"
